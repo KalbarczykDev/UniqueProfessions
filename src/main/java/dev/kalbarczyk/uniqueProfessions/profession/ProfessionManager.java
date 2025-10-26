@@ -7,6 +7,10 @@ import java.util.Map;
 public class ProfessionManager {
     private final Map<String, Profession> professions = new HashMap<>();
 
+    public void clear() {
+        professions.clear();
+    }
+
     public void register(final Profession profession) {
         professions.put(profession.name().toLowerCase(), profession);
     }
