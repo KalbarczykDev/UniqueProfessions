@@ -17,6 +17,8 @@ public enum MessageKey {
     PROFESSION_INFO_CURRENT("profession-info.current"),
     PROFESSION_INFO_DESCRIPTION("profession-info.description-header"),
     PROFESSION_INFO_ALLOWED_PROFESSIONS_HEADER("profession-info.allowed-tools-header"),
+    PROFESSION_INFO_ALLOWED_TOOLS_HEADER("profession-info.allowed-tools-header"),
+
 
     INVALID_PROFESSION("invalid-profession"),
     PROFESSION_ALREADY_SELECTED("profession-already-selected"),
@@ -24,6 +26,7 @@ public enum MessageKey {
     PROFESSION_RESET("profession-reset"),
     NO_PROFESSION("no-profession"),
     CANNOT_USE_TOOL("cannot-use-tool");
+
 
     private final String path;
 

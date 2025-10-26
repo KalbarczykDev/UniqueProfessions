@@ -25,8 +25,7 @@ messages:
   cannot-use-tool: "You cannot use this tool with your current profession."
   no-profession: "You need to choose a profession!"
 
-default:
-  allowed-tools:
+defaultAllowedTools:
     - "WOODEN_PICKAXE"
     - "WOODEN_SHOVEL"
     - "WOODEN_AXE"
@@ -37,7 +36,7 @@ professions:
   miner:
     display-name: "Miner"
     description: "Masters of the underground, extracting precious ores and minerals"
-    allowed-tools:
+    allowedTools:
       - "NETHERITE_PICKAXE"
       - "DIAMOND_PICKAXE"
       - "IRON_PICKAXE"
@@ -46,7 +45,7 @@ professions:
   lumberjack:
     display-name: "Lumberjack"
     description: "Woodcutters who fell trees and harvest timber"
-    allowed-tools:
+    allowedTools:
       - "NETHERITE_AXE"
       - "DIAMOND_AXE"
       - "IRON_AXE"
@@ -55,7 +54,7 @@ professions:
   farmer:
     display-name: "Farmer"
     description: "Cultivators of the land, growing crops and raising livestock"
-    allowed-tools:
+    allowedTools:
       - "NETHERITE_HOE"
       - "DIAMOND_HOE"
       - "IRON_HOE"
@@ -64,7 +63,7 @@ professions:
   warrior:
     display-name: "Warrior"
     description: "Brave fighters who protect and defend against threats"
-    allowed-tools:
+    allowedTools:
       - "NETHERITE_SWORD"
       - "DIAMOND_SWORD"
       - "IRON_SWORD"

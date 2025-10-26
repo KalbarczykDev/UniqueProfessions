@@ -53,6 +53,7 @@ public class ProfessionCommand implements CommandExecutor {
                 break;
             case "info":
                 showProfessionInfo(player, data);
+                break;
             case "list":
                 showAvailableProfessions(player);
                 break;
@@ -71,13 +72,13 @@ public class ProfessionCommand implements CommandExecutor {
 
     private void showHelp(final Player player) {
         player.sendMessage(ChatColors.BORDER_COLOR + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        player.sendMessage(ChatColors.COMMAND_COLOR + "/profession choose <name> " + ChatColors.DESCRIPTION_COLOR
+        player.sendMessage(ChatColors.COMMAND_COLOR + "/up choose <name> " + ChatColors.DESCRIPTION_COLOR
                 + "- " + mm.get(MessageKey.HELP_CHOOSE));
-        player.sendMessage(ChatColors.COMMAND_COLOR + "/profession info " + ChatColors.DESCRIPTION_COLOR
+        player.sendMessage(ChatColors.COMMAND_COLOR + "/up info " + ChatColors.DESCRIPTION_COLOR
                 + "- " + mm.get(MessageKey.HELP_INFO));
-        player.sendMessage(ChatColors.COMMAND_COLOR + "/profession list " + ChatColors.DESCRIPTION_COLOR
+        player.sendMessage(ChatColors.COMMAND_COLOR + "/up list " + ChatColors.DESCRIPTION_COLOR
                 + "- " + mm.get(MessageKey.HELP_LIST));
-        player.sendMessage(ChatColors.COMMAND_COLOR + "/profession reset " + ChatColors.DESCRIPTION_COLOR
+        player.sendMessage(ChatColors.COMMAND_COLOR + "/up " + ChatColors.DESCRIPTION_COLOR
                 + "- " + mm.get(MessageKey.HELP_RESET));
         player.sendMessage(ChatColors.BORDER_COLOR + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     }
@@ -95,7 +96,7 @@ public class ProfessionCommand implements CommandExecutor {
 
         player.sendMessage(ChatColors.BORDER_COLOR + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         player.sendMessage(ChatColors.COMMAND_COLOR + mm.get(MessageKey.HELP_CHOOSE) + ": "
-                + ChatColors.DESCRIPTION_COLOR + "/profession choose <name>");
+                + ChatColors.DESCRIPTION_COLOR + "/up choose <name>");
     }
 
     private void chooseProfession(final Player player, final PlayerData data, final String professionName) {
@@ -133,9 +134,14 @@ public class ProfessionCommand implements CommandExecutor {
         var profession = plugin.getProfessionManager().get(data.getProfession().get().displayName());
         if (profession == null) return;
 
-        player.sendMessage(ChatColors.BORDER_COLOR + "━━━━━ " + ChatColors.COMMAND_COLOR + mm.get(MessageKey.PROFESSION_INFO_HEADER) + ChatColors.BORDER_COLOR + " ━━━━━");
-        player.sendMessage(ChatColors.COMMAND_COLOR + profession.displayName());
+        var allowedTools = profession.allowedTools();
+
+        player.sendMessage(ChatColors.BORDER_COLOR + "━━━━━ " + ChatColors.COMMAND_COLOR + mm.format(MessageKey.PROFESSION_INFO_HEADER, "profession", profession.displayName()) + ChatColors.BORDER_COLOR + " ━━━━━");
         player.sendMessage(ChatColors.DESCRIPTION_COLOR + profession.description());
+        player.sendMessage(ChatColors.COMMAND_COLOR + mm.get(MessageKey.PROFESSION_INFO_ALLOWED_TOOLS_HEADER) + ":");
+        for (var tool : allowedTools) {
+            player.sendMessage(ChatColors.DESCRIPTION_COLOR + "- " + tool.name());
+        }
         player.sendMessage(ChatColors.BORDER_COLOR + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     }
 

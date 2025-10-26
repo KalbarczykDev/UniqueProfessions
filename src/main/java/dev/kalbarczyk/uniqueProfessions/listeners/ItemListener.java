@@ -13,6 +13,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+import java.util.HashSet;
+
 public class ItemListener implements Listener {
 
     private final UniqueProfessions plugin;
@@ -28,11 +30,10 @@ public class ItemListener implements Listener {
         var player = event.getPlayer();
         var item = event.getItem();
 
-        // No item in hand
-
+        //no item in hand
         if (item == null || item.getType() == Material.AIR) return;
 
-        // Allow creative mode and admin bypass
+        // Bypass for creative mode and permission
         if (player.getGameMode() == GameMode.CREATIVE || player.hasPermission("profession.bypass")) return;
 
 
@@ -41,17 +42,16 @@ public class ItemListener implements Listener {
 
         if (!isRestrictedTool(material)) return;
 
-        // Restricted item logic
         if (data.getProfession().isEmpty()) {
-            // Player has no profession -> cancel restricted items
             event.setCancelled(true);
             player.sendMessage(ChatColors.BORDER_COLOR + mm.get(MessageKey.NO_PROFESSION));
             return;
         }
 
         var profession = data.getProfession().get();
-        if (!profession.canUseTool(material)) {
-            // Player has a profession but cannot use this tool
+        var allowed = new HashSet<>(profession.allowedTools());
+        allowed.addAll(plugin.getDefaultAllowedTools());
+        if (!allowed.contains(material)) {
             event.setCancelled(true);
             player.spigot().sendMessage(
                     ChatMessageType.ACTION_BAR,
@@ -61,15 +61,12 @@ public class ItemListener implements Listener {
     }
 
     private boolean isRestrictedTool(Material material) {
-        if (plugin.getDefaultAllowedTools().contains(material)) {
-            return false;
-        }
         var name = material.name();
-        // Check for tools
         return name.endsWith("_PICKAXE") ||
                 name.endsWith("_AXE") ||
                 name.endsWith("_SHOVEL") ||
-                name.endsWith("_HOE");
+                name.endsWith("_HOE") ||
+                name.endsWith("_SWORD");
     }
 
 
