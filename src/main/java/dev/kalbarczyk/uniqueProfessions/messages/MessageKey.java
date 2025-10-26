@@ -19,7 +19,8 @@ public enum MessageKey {
     PROFESSION_ALREADY_SELECTED("profession-already-selected"),
     PROFESSION_SELECTED("profession-selected"),
     PROFESSION_RESET("profession-reset"),
-    NO_PROFESSION("no-profession");
+    NO_PROFESSION("no-profession"),
+    CANNOT_USE_TOOL("cannot-use-tool");
 
     private final String path;
 

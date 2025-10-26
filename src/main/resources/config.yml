@@ -28,6 +28,7 @@ messages:
   invalid-profession: "The profession '{profession}' does not exist."
   profession-selected: "You are now a {profession}!"
   profession-reset: "Your {profession} profession has been reset."
+  cannot-use-tool: "You cannot use this tool with your current profession."
   no-profession: "You need to choose profession!"
 
 
