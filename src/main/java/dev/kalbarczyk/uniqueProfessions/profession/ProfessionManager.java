@@ -2,6 +2,8 @@ package dev.kalbarczyk.uniqueProfessions.profession;
 
 import dev.kalbarczyk.uniqueProfessions.UniqueProfessions;
 import dev.kalbarczyk.uniqueProfessions.player.PlayerData;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -135,8 +137,10 @@ public class ProfessionManager {
         checkLevelUp(player, data);
 
         // Show XP gain
-        //TODO: Enable action bar messages
-        //player.sendActionBar(ChatColor.GOLD + "+" + String.format("%.1f", xp) + " XP");
+        player.spigot().sendMessage(
+                ChatMessageType.ACTION_BAR,
+                new TextComponent(ChatColor.GOLD + "+" + String.format("%.1f", xp) + " XP")
+        );
     }
 
     private void checkLevelUp(final Player player, final PlayerData data) {
