@@ -28,7 +28,8 @@ public class ConfigLoader {
             for (String toolName : tools) {
                 try {
                     allowedTools.add(Material.valueOf(toolName.toUpperCase()));
-                } catch (IllegalArgumentException ignored) {}
+                } catch (IllegalArgumentException ignored) {
+                }
             }
 
             professions.add(new Profession(key, displayName, description, allowedTools));
@@ -36,4 +37,17 @@ public class ConfigLoader {
 
         return professions;
     }
+
+    public static HashSet<Material> loadDefaultAllowedTools(FileConfiguration config) {
+        var defaultTools = new HashSet<Material>();
+        var toolNames = config.getStringList("defaultAllowedTools");
+        for (var name : toolNames) {
+            try {
+                defaultTools.add(Material.valueOf(name.toUpperCase()));
+            } catch (IllegalArgumentException ignored) {
+            }
+        }
+        return defaultTools;
+    }
+
 }

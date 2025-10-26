@@ -6,7 +6,7 @@
 
 settings:
   message-prefix: "&6[Profession]&r "
-  debug-mode: false
+  debug-mode: true
 
 messages:
 
@@ -54,6 +54,7 @@ professions:
       - "DIAMOND_PICKAXE"
       - "IRON_PICKAXE"
       - "STONE_PICKAXE"
+      - "WOODEN_PICKAXE"
   lumberjack:
     display-name: "Lumberjack"
     description: "Woodcutters who fell trees and harvest timber"
@@ -62,6 +63,7 @@ professions:
       - "DIAMOND_AXE"
       - "IRON_AXE"
       - "STONE_AXE"
+      - "WOODEN_AXE"
 
 
 

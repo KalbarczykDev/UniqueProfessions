@@ -1,6 +1,7 @@
 package dev.kalbarczyk.uniqueProfessions.listeners;
 
 import dev.kalbarczyk.uniqueProfessions.UniqueProfessions;
+import dev.kalbarczyk.uniqueProfessions.config.ConfigManager;
 import dev.kalbarczyk.uniqueProfessions.messages.MessageKey;
 import dev.kalbarczyk.uniqueProfessions.messages.MessageManager;
 import dev.kalbarczyk.uniqueProfessions.utils.ChatColors;
@@ -62,12 +63,16 @@ public class ItemListener implements Listener {
     }
 
     private boolean isRestrictedTool(Material material) {
+        if (plugin.getDefaultAllowedTools().contains(material)) {
+            return false;
+        }
         var name = material.name();
-
         // Check for tools
         return name.endsWith("_PICKAXE") ||
                 name.endsWith("_AXE") ||
                 name.endsWith("_SHOVEL") ||
                 name.endsWith("_HOE");
     }
+
+
 }

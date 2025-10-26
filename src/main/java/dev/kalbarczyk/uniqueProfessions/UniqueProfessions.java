@@ -7,9 +7,12 @@ import dev.kalbarczyk.uniqueProfessions.listeners.PlayerListener;
 import dev.kalbarczyk.uniqueProfessions.messages.MessageManager;
 import dev.kalbarczyk.uniqueProfessions.player.PlayerDataManager;
 import dev.kalbarczyk.uniqueProfessions.profession.ProfessionManager;
+import org.bukkit.Material;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public final class UniqueProfessions extends JavaPlugin {
 
@@ -18,6 +21,8 @@ public final class UniqueProfessions extends JavaPlugin {
     private ProfessionManager professionManager;
     private ConfigManager configManager;
     private MessageManager messageManager;
+
+    private Set<Material> defaultAllowedTools = new HashSet<>();
 
     @Override
     public void onEnable() {
@@ -64,6 +69,14 @@ public final class UniqueProfessions extends JavaPlugin {
 
     public MessageManager getMessageManager() {
         return messageManager;
+    }
+
+    public Set<Material> getDefaultAllowedTools() {
+        return defaultAllowedTools;
+    }
+
+    public void setDefaultAllowedTools(Set<Material> tools) {
+        this.defaultAllowedTools = tools;
     }
 
 }

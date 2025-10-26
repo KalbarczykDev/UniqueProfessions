@@ -42,6 +42,8 @@ public class ConfigManager {
             var professionManager = plugin.getProfessionManager();
             professionManager.clear();
             professionManager.registerAll(ConfigLoader.loadProfessions(config));
+            var defaultTools = ConfigLoader.loadDefaultAllowedTools(config);
+            plugin.setDefaultAllowedTools(defaultTools);
         }
         plugin.getLogger().info("Loaded config file: " + configFile.getAbsolutePath());
     }
