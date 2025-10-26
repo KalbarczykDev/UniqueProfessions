@@ -2,12 +2,14 @@ package dev.kalbarczyk.uniqueProfessions;
 
 import dev.kalbarczyk.uniqueProfessions.commands.AdminCommand;
 import dev.kalbarczyk.uniqueProfessions.commands.ProfessionCommand;
+import dev.kalbarczyk.uniqueProfessions.config.ConfigManager;
 import dev.kalbarczyk.uniqueProfessions.listeners.BlockListener;
 import dev.kalbarczyk.uniqueProfessions.listeners.ItemListener;
 import dev.kalbarczyk.uniqueProfessions.listeners.PlayerListener;
 import dev.kalbarczyk.uniqueProfessions.player.PlayerDataManager;
 import dev.kalbarczyk.uniqueProfessions.profession.ProfessionManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.checkerframework.checker.units.qual.C;
 
 import java.util.Objects;
 
@@ -16,12 +18,14 @@ public final class UniqueProfessions extends JavaPlugin {
     private static UniqueProfessions instance;
     private PlayerDataManager playerDataManager;
     private ProfessionManager professionManager;
+    private ConfigManager configManager;
 
     @Override
     public void onEnable() {
         instance = this;
         playerDataManager = new PlayerDataManager(this);
         professionManager = new ProfessionManager(this);
+        configManager = new ConfigManager(this);
 
         getServer().getPluginManager().registerEvents(new BlockListener(this), this);
         getServer().getPluginManager().registerEvents(new ItemListener(this), this);
@@ -54,4 +58,9 @@ public final class UniqueProfessions extends JavaPlugin {
     public ProfessionManager getProfessionManager() {
         return professionManager;
     }
+
+    public ConfigManager getConfigManager() {
+        return configManager;
+    }
+
 }

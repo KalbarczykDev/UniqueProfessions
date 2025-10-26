@@ -1,0 +1,34 @@
+settings:
+  message-prefix: "&6[Profession]&r "
+  debug-mode: false
+
+
+default:
+  allowed-tools:
+    - "WOODEN_PICKAXE"
+    - "WOODEN_SHOVEL"
+    - "WOODEN_AXE"
+    - "WOODEN_HOE"
+
+# Define professions here
+professions:
+  miner:
+    display-name: "Miner"
+    description: "Excels at mining ores and stones."
+    allowed-tools:
+      - "NETHERITE_PICKAXE"
+      - "DIAMOND_PICKAXE"
+      - "IRON_PICKAXE"
+      - "STONE_PICKAXE"
+  farmer:
+    display-name: "Farmer"
+    description: "Specializes in agriculture and animal husbandry."
+    allowed-tools:
+      - "NETHERITE_HOE"
+      - "DIAMOND_HOE"
+      - "IRON_HOE"
+      - "STONE_HOE"
+
+
+
+
