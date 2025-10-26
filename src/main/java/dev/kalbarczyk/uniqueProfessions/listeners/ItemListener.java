@@ -1,7 +1,6 @@
 package dev.kalbarczyk.uniqueProfessions.listeners;
 
 import dev.kalbarczyk.uniqueProfessions.UniqueProfessions;
-import dev.kalbarczyk.uniqueProfessions.config.ConfigManager;
 import dev.kalbarczyk.uniqueProfessions.messages.MessageKey;
 import dev.kalbarczyk.uniqueProfessions.messages.MessageManager;
 import dev.kalbarczyk.uniqueProfessions.utils.ChatColors;
