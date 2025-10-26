@@ -2,7 +2,6 @@ package dev.kalbarczyk.uniqueProfessions;
 
 import dev.kalbarczyk.uniqueProfessions.commands.ProfessionCommand;
 import dev.kalbarczyk.uniqueProfessions.config.ConfigManager;
-import dev.kalbarczyk.uniqueProfessions.listeners.BlockListener;
 import dev.kalbarczyk.uniqueProfessions.listeners.ItemListener;
 import dev.kalbarczyk.uniqueProfessions.listeners.PlayerListener;
 import dev.kalbarczyk.uniqueProfessions.messages.MessageManager;
@@ -29,7 +28,6 @@ public final class UniqueProfessions extends JavaPlugin {
         messageManager = new MessageManager();
 
 
-        getServer().getPluginManager().registerEvents(new BlockListener(this), this);
         getServer().getPluginManager().registerEvents(new ItemListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
 
