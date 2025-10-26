@@ -1,4 +1,6 @@
 name: UniqueProfessions
-version: '1.0-indev'
+version: '${project.version}}'
 main: dev.kalbarczyk.uniqueProfessions.UniqueProfessions
-api-version: '1.21'
+api-version: '1.21.10'
+authors: [ Tepeshini(Kalbarczyk.dev) ]
+description: A Minecraft plugin that adds unique professions for players.
