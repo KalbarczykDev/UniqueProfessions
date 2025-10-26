@@ -18,8 +18,8 @@ public class ItemListener implements Listener {
     private final UniqueProfessions plugin;
     private final MessageManager mm;
 
-    public ItemListener(final UniqueProfessions plugin) {
-        this.plugin = plugin;
+    public ItemListener() {
+        this.plugin = UniqueProfessions.getInstance();
         this.mm = plugin.getMessageManager();
     }
 

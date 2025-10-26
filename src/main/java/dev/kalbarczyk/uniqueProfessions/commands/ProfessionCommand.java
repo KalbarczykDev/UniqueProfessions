@@ -19,8 +19,8 @@ public class ProfessionCommand implements CommandExecutor {
     private final MessageManager mm;
 
 
-    public ProfessionCommand(final UniqueProfessions plugin) {
-        this.plugin = plugin;
+    public ProfessionCommand() {
+        this.plugin = UniqueProfessions.getInstance();
         this.mm = plugin.getMessageManager();
     }
 

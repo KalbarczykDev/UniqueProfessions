@@ -14,8 +14,8 @@ public class PlayerListener implements Listener {
     private final UniqueProfessions plugin;
     private final MessageManager messageManager;
 
-    public PlayerListener(final UniqueProfessions plugin) {
-        this.plugin = plugin;
+    public PlayerListener() {
+        this.plugin = UniqueProfessions.getInstance();
         this.messageManager = plugin.getMessageManager();
     }
 

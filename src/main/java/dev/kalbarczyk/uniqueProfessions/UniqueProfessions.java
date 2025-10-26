@@ -28,10 +28,10 @@ public final class UniqueProfessions extends JavaPlugin {
         messageManager = new MessageManager();
 
 
-        getServer().getPluginManager().registerEvents(new ItemListener(this), this);
-        getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
+        getServer().getPluginManager().registerEvents(new ItemListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerListener(), this);
 
-        Objects.requireNonNull(getCommand("profession")).setExecutor(new ProfessionCommand(this));
+        Objects.requireNonNull(getCommand("profession")).setExecutor(new ProfessionCommand());
 
         getLogger().info("ProfessionPlugin has been enabled!");
 
