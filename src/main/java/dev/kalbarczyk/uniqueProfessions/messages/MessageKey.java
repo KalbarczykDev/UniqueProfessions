@@ -9,6 +9,8 @@ public enum MessageKey {
     HELP_LIST("help-message.list"),
     HELP_RESET("help-message.reset"),
 
+    WELCOME_MESSAGE("welcome-message"),
+
     PROFESSION_INFO_HEADER("profession-info.header"),
     PROFESSION_INFO_NO_PROFESSION("profession-info.no-profession"),
     PROFESSION_INFO_CURRENT("profession-info.current"),
