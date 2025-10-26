@@ -1,0 +1,4 @@
+name: UniqueProfessions
+version: '1.0-indev'
+main: dev.kalbarczyk.uniqueProfessions.UniqueProfessions
+api-version: '1.21'
