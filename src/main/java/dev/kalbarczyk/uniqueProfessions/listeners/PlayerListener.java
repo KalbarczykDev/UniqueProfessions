@@ -27,8 +27,10 @@ public class PlayerListener implements Listener {
         // Send welcome message if they don't have a profession
         if (plugin.getPlayerDataManager().getPlayerData(event.getPlayer()).getProfession().isEmpty()) {
             event.getPlayer().sendMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-            event.getPlayer().sendMessage(ChatColor.YELLOW + messageManager.get(MessageKey.WELCOME_MESSAGE));
+            event.getPlayer().sendMessage(ChatColor.YELLOW + messageManager.get(MessageKey.WELCOME_MESSAGE_CHOOSE));
             event.getPlayer().sendMessage(ChatColor.GREEN + "/up choose");
+            event.getPlayer().sendMessage(ChatColor.YELLOW + messageManager.get(MessageKey.WELCOME_MESSAGE_PROFESSION));
+            event.getPlayer().sendMessage(ChatColor.GREEN + "/up list");
             event.getPlayer().sendMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         }
     }
