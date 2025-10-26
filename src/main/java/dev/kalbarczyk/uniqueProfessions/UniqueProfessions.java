@@ -6,6 +6,7 @@ import dev.kalbarczyk.uniqueProfessions.config.ConfigManager;
 import dev.kalbarczyk.uniqueProfessions.listeners.BlockListener;
 import dev.kalbarczyk.uniqueProfessions.listeners.ItemListener;
 import dev.kalbarczyk.uniqueProfessions.listeners.PlayerListener;
+import dev.kalbarczyk.uniqueProfessions.messages.MessageManager;
 import dev.kalbarczyk.uniqueProfessions.player.PlayerDataManager;
 import dev.kalbarczyk.uniqueProfessions.profession.ProfessionManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,6 +19,7 @@ public final class UniqueProfessions extends JavaPlugin {
     private PlayerDataManager playerDataManager;
     private ProfessionManager professionManager;
     private ConfigManager configManager;
+    private MessageManager messageManager;
 
     @Override
     public void onEnable() {
@@ -25,6 +27,7 @@ public final class UniqueProfessions extends JavaPlugin {
         professionManager = new ProfessionManager();
         configManager = new ConfigManager();
         playerDataManager = new PlayerDataManager();
+        messageManager = new MessageManager();
 
 
         getServer().getPluginManager().registerEvents(new BlockListener(this), this);
@@ -61,6 +64,10 @@ public final class UniqueProfessions extends JavaPlugin {
 
     public ConfigManager getConfigManager() {
         return configManager;
+    }
+
+    public MessageManager getMessageManager() {
+        return messageManager;
     }
 
 }

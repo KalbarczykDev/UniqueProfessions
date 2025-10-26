@@ -5,8 +5,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 
@@ -31,7 +29,6 @@ public class ConfigManager {
         if (!configFile.exists()) {
             plugin.saveDefaultConfig();
         }
-
         loadConfig();
 
     }
@@ -47,6 +44,10 @@ public class ConfigManager {
             professionManager.registerAll(ConfigLoader.loadProfessions(config));
         }
         plugin.getLogger().info("Loaded config file: " + configFile.getAbsolutePath());
+    }
+
+    public FileConfiguration getConfig() {
+        return YamlConfiguration.loadConfiguration(configFile);
     }
 
 
