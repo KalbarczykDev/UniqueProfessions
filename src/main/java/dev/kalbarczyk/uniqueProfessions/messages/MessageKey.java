@@ -15,7 +15,7 @@ public enum MessageKey {
     PROFESSION_INFO_HEADER("profession-info.header"),
     PROFESSION_INFO_NO_PROFESSION("profession-info.no-profession"),
     PROFESSION_INFO_CURRENT("profession-info.current"),
-    PROFESSION_INFO_DESCRIPTION("profession-info.description"),
+    PROFESSION_INFO_DESCRIPTION("profession-info.description-header"),
     PROFESSION_INFO_ALLOWED_PROFESSIONS_HEADER("profession-info.allowed-tools-header"),
 
     INVALID_PROFESSION("invalid-profession"),

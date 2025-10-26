@@ -18,12 +18,21 @@ public class MessageManager {
 
     public void loadMessages() {
         var config = plugin.getConfigManager().getConfig();
-
         var section = config.getConfigurationSection("messages");
         if (section != null) {
-            for (var key : section.getKeys(false)) {
+            loadSection(section, "");
+        }
+    }
+
+    private void loadSection(org.bukkit.configuration.ConfigurationSection section, String prefix) {
+        for (var key : section.getKeys(false)) {
+            var fullKey = prefix.isEmpty() ? key : prefix + "." + key;
+            var sub = section.getConfigurationSection(key);
+            if (sub != null) {
+                loadSection(sub, fullKey);
+            } else {
                 var value = section.getString(key, "");
-                messages.put(key, ChatColor.translateAlternateColorCodes('&', value));
+                messages.put(fullKey, ChatColor.translateAlternateColorCodes('&', value));
             }
         }
     }
