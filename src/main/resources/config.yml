@@ -1,15 +1,8 @@
-#Configuration file for Unique Profession Minecraft Plugin
-# Customize professions, messages, and settings below.
-# Note: Use valid Minecraft material names for tools.
-# Example: "DIAMOND_PICKAXE", "IRON_SHOVEL", etc.
-# Don't use color codes for messages and names they will not work.
-
 settings:
   message-prefix: "&6[Profession]&r "
   debug-mode: true
 
 messages:
-
   no-permission: "You do not have permission to use this command."
   unknown-command: "Unknown command. Use {command} help for a list of commands."
   help-message:
@@ -23,28 +16,23 @@ messages:
     current: "Current Profession"
     description-header: "Description"
     allowed-tools-header: "Allowed Tools"
-
   welcome-message-choose: "Welcome, {player}! Choose your profession using"
   welcome-message-professions: "See available professions with"
-
   profession-already-selected: "You have already selected a profession: {profession}."
   invalid-profession: "The profession '{profession}' does not exist."
   profession-selected: "You are now a {profession}!"
   profession-reset: "Your {profession} profession has been reset."
   cannot-use-tool: "You cannot use this tool with your current profession."
-  no-profession: "You need to choose profession!"
+  no-profession: "You need to choose a profession!"
 
-
-
-# Define default allowed tools for all professions
 default:
   allowed-tools:
     - "WOODEN_PICKAXE"
     - "WOODEN_SHOVEL"
     - "WOODEN_AXE"
     - "WOODEN_HOE"
+    - "WOODEN_SWORD"
 
-# Define professions here
 professions:
   miner:
     display-name: "Miner"
@@ -64,7 +52,21 @@ professions:
       - "IRON_AXE"
       - "STONE_AXE"
       - "WOODEN_AXE"
-
-
-
-
+  farmer:
+    display-name: "Farmer"
+    description: "Cultivators of the land, growing crops and raising livestock"
+    allowed-tools:
+      - "NETHERITE_HOE"
+      - "DIAMOND_HOE"
+      - "IRON_HOE"
+      - "STONE_HOE"
+      - "WOODEN_HOE"
+  warrior:
+    display-name: "Warrior"
+    description: "Brave fighters who protect and defend against threats"
+    allowed-tools:
+      - "NETHERITE_SWORD"
+      - "DIAMOND_SWORD"
+      - "IRON_SWORD"
+      - "STONE_SWORD"
+      - "WOODEN_SWORD"

@@ -130,7 +130,7 @@ public class ProfessionCommand implements CommandExecutor {
             return;
         }
 
-        var profession = plugin.getProfessionManager().get(data.getProfession().get().name());
+        var profession = plugin.getProfessionManager().get(data.getProfession().get().displayName());
         if (profession == null) return;
 
         player.sendMessage(ChatColors.BORDER_COLOR + "━━━━━ " + ChatColors.COMMAND_COLOR + mm.get(MessageKey.PROFESSION_INFO_HEADER) + ChatColors.BORDER_COLOR + " ━━━━━");

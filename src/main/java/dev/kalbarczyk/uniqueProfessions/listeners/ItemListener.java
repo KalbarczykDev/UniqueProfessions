@@ -32,32 +32,31 @@ public class ItemListener implements Listener {
 
         if (item == null || item.getType() == Material.AIR) return;
 
-
         // Allow creative mode and admin bypass
         if (player.getGameMode() == GameMode.CREATIVE || player.hasPermission("profession.bypass")) return;
 
-        var data = plugin.getPlayerDataManager().getPlayerData(player);
 
-        // Player without a profession
+        var data = plugin.getPlayerDataManager().getPlayerData(player);
+        var material = item.getType();
+
+        if (!isRestrictedTool(material)) return;
+
+        // Restricted item logic
         if (data.getProfession().isEmpty()) {
-            if (isRestrictedTool(item.getType())) {
-                event.setCancelled(true);
-                player.sendMessage(ChatColors.BORDER_COLOR + mm.get(MessageKey.NO_PROFESSION));
-            }
+            // Player has no profession -> cancel restricted items
+            event.setCancelled(true);
+            player.sendMessage(ChatColors.BORDER_COLOR + mm.get(MessageKey.NO_PROFESSION));
             return;
         }
 
-        // Restricted tool usage
-        if (isRestrictedTool(item.getType())) {
-            var playerProfession = data.getProfession().get();
-            if (!playerProfession.canUseTool(item.getType())) {
-                event.setCancelled(true);
-                // Action bar
-                player.spigot().sendMessage(
-                        ChatMessageType.ACTION_BAR,
-                        new TextComponent(ChatColors.DESCRIPTION_COLOR + mm.get(MessageKey.CANNOT_USE_TOOL))
-                );
-            }
+        var profession = data.getProfession().get();
+        if (!profession.canUseTool(material)) {
+            // Player has a profession but cannot use this tool
+            event.setCancelled(true);
+            player.spigot().sendMessage(
+                    ChatMessageType.ACTION_BAR,
+                    new TextComponent(ChatColors.DESCRIPTION_COLOR + mm.get(MessageKey.CANNOT_USE_TOOL))
+            );
         }
     }
 
