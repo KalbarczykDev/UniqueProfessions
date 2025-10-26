@@ -1,0 +1,472 @@
+# Profession Plugin Configuration
+# Configure profession levels, allowed items, and XP requirements
+
+professions:
+  miner:
+    max-level: 10
+    levels:
+      1:
+        allowed-tools:
+          - WOODEN_PICKAXE
+          - STONE_PICKAXE
+        allowed-blocks:
+          - STONE
+          - COBBLESTONE
+          - COAL_ORE
+          - DEEPSLATE_COAL_ORE
+        xp-required: 0
+      2:
+        allowed-tools:
+          - WOODEN_PICKAXE
+          - STONE_PICKAXE
+          - IRON_PICKAXE
+        allowed-blocks:
+          - STONE
+          - COBBLESTONE
+          - COAL_ORE
+          - DEEPSLATE_COAL_ORE
+          - IRON_ORE
+          - DEEPSLATE_IRON_ORE
+          - COPPER_ORE
+          - DEEPSLATE_COPPER_ORE
+        xp-required: 100
+      3:
+        allowed-tools:
+          - WOODEN_PICKAXE
+          - STONE_PICKAXE
+          - IRON_PICKAXE
+          - GOLDEN_PICKAXE
+        allowed-blocks:
+          - STONE
+          - COBBLESTONE
+          - COAL_ORE
+          - DEEPSLATE_COAL_ORE
+          - IRON_ORE
+          - DEEPSLATE_IRON_ORE
+          - COPPER_ORE
+          - DEEPSLATE_COPPER_ORE
+          - GOLD_ORE
+          - DEEPSLATE_GOLD_ORE
+          - REDSTONE_ORE
+          - DEEPSLATE_REDSTONE_ORE
+          - LAPIS_ORE
+          - DEEPSLATE_LAPIS_ORE
+        xp-required: 300
+      4:
+        allowed-tools:
+          - WOODEN_PICKAXE
+          - STONE_PICKAXE
+          - IRON_PICKAXE
+          - GOLDEN_PICKAXE
+          - DIAMOND_PICKAXE
+        allowed-blocks:
+          - STONE
+          - COBBLESTONE
+          - COAL_ORE
+          - DEEPSLATE_COAL_ORE
+          - IRON_ORE
+          - DEEPSLATE_IRON_ORE
+          - COPPER_ORE
+          - DEEPSLATE_COPPER_ORE
+          - GOLD_ORE
+          - DEEPSLATE_GOLD_ORE
+          - REDSTONE_ORE
+          - DEEPSLATE_REDSTONE_ORE
+          - LAPIS_ORE
+          - DEEPSLATE_LAPIS_ORE
+          - DIAMOND_ORE
+          - DEEPSLATE_DIAMOND_ORE
+          - EMERALD_ORE
+          - DEEPSLATE_EMERALD_ORE
+        xp-required: 600
+      5:
+        allowed-tools:
+          - WOODEN_PICKAXE
+          - STONE_PICKAXE
+          - IRON_PICKAXE
+          - GOLDEN_PICKAXE
+          - DIAMOND_PICKAXE
+          - NETHERITE_PICKAXE
+        allowed-blocks:
+          - STONE
+          - COBBLESTONE
+          - COAL_ORE
+          - DEEPSLATE_COAL_ORE
+          - IRON_ORE
+          - DEEPSLATE_IRON_ORE
+          - COPPER_ORE
+          - DEEPSLATE_COPPER_ORE
+          - GOLD_ORE
+          - DEEPSLATE_GOLD_ORE
+          - REDSTONE_ORE
+          - DEEPSLATE_REDSTONE_ORE
+          - LAPIS_ORE
+          - DEEPSLATE_LAPIS_ORE
+          - DIAMOND_ORE
+          - DEEPSLATE_DIAMOND_ORE
+          - EMERALD_ORE
+          - DEEPSLATE_EMERALD_ORE
+          - NETHER_GOLD_ORE
+          - NETHER_QUARTZ_ORE
+          - ANCIENT_DEBRIS
+          - OBSIDIAN
+        xp-required: 1000
+    xp-gains:
+      COAL_ORE: 5
+      DEEPSLATE_COAL_ORE: 6
+      IRON_ORE: 10
+      DEEPSLATE_IRON_ORE: 12
+      COPPER_ORE: 8
+      DEEPSLATE_COPPER_ORE: 10
+      GOLD_ORE: 15
+      DEEPSLATE_GOLD_ORE: 18
+      REDSTONE_ORE: 12
+      DEEPSLATE_REDSTONE_ORE: 15
+      LAPIS_ORE: 12
+      DEEPSLATE_LAPIS_ORE: 15
+      DIAMOND_ORE: 50
+      DEEPSLATE_DIAMOND_ORE: 60
+      EMERALD_ORE: 50
+      DEEPSLATE_EMERALD_ORE: 60
+      NETHER_GOLD_ORE: 20
+      NETHER_QUARTZ_ORE: 10
+      ANCIENT_DEBRIS: 100
+      STONE: 1
+      COBBLESTONE: 1
+      OBSIDIAN: 20
+
+  farmer:
+    max-level: 10
+    levels:
+      1:
+        allowed-tools:
+          - WOODEN_HOE
+          - STONE_HOE
+        allowed-blocks:
+          - WHEAT
+          - CARROTS
+          - POTATOES
+          - BEETROOTS
+          - FARMLAND
+        xp-required: 0
+      2:
+        allowed-tools:
+          - WOODEN_HOE
+          - STONE_HOE
+          - IRON_HOE
+        allowed-blocks:
+          - WHEAT
+          - CARROTS
+          - POTATOES
+          - BEETROOTS
+          - FARMLAND
+          - MELON
+          - PUMPKIN
+          - SUGAR_CANE
+        xp-required: 100
+      3:
+        allowed-tools:
+          - WOODEN_HOE
+          - STONE_HOE
+          - IRON_HOE
+          - GOLDEN_HOE
+          - DIAMOND_HOE
+        allowed-blocks:
+          - WHEAT
+          - CARROTS
+          - POTATOES
+          - BEETROOTS
+          - FARMLAND
+          - MELON
+          - PUMPKIN
+          - SUGAR_CANE
+          - COCOA
+          - NETHER_WART
+          - SWEET_BERRY_BUSH
+        xp-required: 300
+      4:
+        allowed-tools:
+          - WOODEN_HOE
+          - STONE_HOE
+          - IRON_HOE
+          - GOLDEN_HOE
+          - DIAMOND_HOE
+          - NETHERITE_HOE
+        allowed-blocks:
+          - WHEAT
+          - CARROTS
+          - POTATOES
+          - BEETROOTS
+          - FARMLAND
+          - MELON
+          - PUMPKIN
+          - SUGAR_CANE
+          - COCOA
+          - NETHER_WART
+          - SWEET_BERRY_BUSH
+          - CHORUS_FLOWER
+          - CHORUS_PLANT
+        xp-required: 600
+    xp-gains:
+      WHEAT: 3
+      CARROTS: 3
+      POTATOES: 3
+      BEETROOTS: 3
+      MELON: 5
+      PUMPKIN: 5
+      SUGAR_CANE: 2
+      COCOA: 4
+      NETHER_WART: 5
+      SWEET_BERRY_BUSH: 3
+
+  lumberjack:
+    max-level: 10
+    levels:
+      1:
+        allowed-tools:
+          - WOODEN_AXE
+          - STONE_AXE
+        allowed-blocks:
+          - OAK_LOG
+          - OAK_WOOD
+          - BIRCH_LOG
+          - BIRCH_WOOD
+        xp-required: 0
+      2:
+        allowed-tools:
+          - WOODEN_AXE
+          - STONE_AXE
+          - IRON_AXE
+        allowed-blocks:
+          - OAK_LOG
+          - OAK_WOOD
+          - BIRCH_LOG
+          - BIRCH_WOOD
+          - SPRUCE_LOG
+          - SPRUCE_WOOD
+          - JUNGLE_LOG
+          - JUNGLE_WOOD
+        xp-required: 100
+      3:
+        allowed-tools:
+          - WOODEN_AXE
+          - STONE_AXE
+          - IRON_AXE
+          - GOLDEN_AXE
+          - DIAMOND_AXE
+        allowed-blocks:
+          - OAK_LOG
+          - OAK_WOOD
+          - BIRCH_LOG
+          - BIRCH_WOOD
+          - SPRUCE_LOG
+          - SPRUCE_WOOD
+          - JUNGLE_LOG
+          - JUNGLE_WOOD
+          - ACACIA_LOG
+          - ACACIA_WOOD
+          - DARK_OAK_LOG
+          - DARK_OAK_WOOD
+          - MANGROVE_LOG
+          - MANGROVE_WOOD
+        xp-required: 300
+      4:
+        allowed-tools:
+          - WOODEN_AXE
+          - STONE_AXE
+          - IRON_AXE
+          - GOLDEN_AXE
+          - DIAMOND_AXE
+          - NETHERITE_AXE
+        allowed-blocks:
+          - OAK_LOG
+          - OAK_WOOD
+          - BIRCH_LOG
+          - BIRCH_WOOD
+          - SPRUCE_LOG
+          - SPRUCE_WOOD
+          - JUNGLE_LOG
+          - JUNGLE_WOOD
+          - ACACIA_LOG
+          - ACACIA_WOOD
+          - DARK_OAK_LOG
+          - DARK_OAK_WOOD
+          - MANGROVE_LOG
+          - MANGROVE_WOOD
+          - CRIMSON_STEM
+          - WARPED_STEM
+          - CHERRY_LOG
+          - CHERRY_WOOD
+        xp-required: 600
+    xp-gains:
+      OAK_LOG: 5
+      BIRCH_LOG: 5
+      SPRUCE_LOG: 5
+      JUNGLE_LOG: 6
+      ACACIA_LOG: 5
+      DARK_OAK_LOG: 6
+      MANGROVE_LOG: 6
+      CRIMSON_STEM: 7
+      WARPED_STEM: 7
+      CHERRY_LOG: 6
+
+  blacksmith:
+    max-level: 10
+    levels:
+      1:
+        allowed-tools:
+          - WOODEN_SWORD
+          - STONE_SWORD
+        allowed-blocks: [ ]
+        xp-required: 0
+      2:
+        allowed-tools:
+          - WOODEN_SWORD
+          - STONE_SWORD
+          - IRON_SWORD
+        allowed-blocks: [ ]
+        xp-required: 100
+      3:
+        allowed-tools:
+          - WOODEN_SWORD
+          - STONE_SWORD
+          - IRON_SWORD
+          - GOLDEN_SWORD
+          - DIAMOND_SWORD
+        allowed-blocks: [ ]
+        xp-required: 300
+      4:
+        allowed-tools:
+          - WOODEN_SWORD
+          - STONE_SWORD
+          - IRON_SWORD
+          - GOLDEN_SWORD
+          - DIAMOND_SWORD
+          - NETHERITE_SWORD
+        allowed-blocks: [ ]
+        xp-required: 600
+    xp-gains:
+      IRON_INGOT: 5
+      GOLD_INGOT: 8
+      DIAMOND: 15
+      NETHERITE_INGOT: 50
+
+  builder:
+    max-level: 10
+    levels:
+      1:
+        allowed-tools:
+          - WOODEN_SHOVEL
+          - STONE_SHOVEL
+        allowed-blocks:
+          - DIRT
+          - GRASS_BLOCK
+          - SAND
+          - GRAVEL
+          - CLAY
+          - COBBLESTONE
+          - STONE_BRICKS
+          - BRICKS
+          - OAK_PLANKS
+          - BIRCH_PLANKS
+        xp-required: 0
+      2:
+        allowed-tools:
+          - WOODEN_SHOVEL
+          - STONE_SHOVEL
+          - IRON_SHOVEL
+        allowed-blocks:
+          - DIRT
+          - GRASS_BLOCK
+          - SAND
+          - GRAVEL
+          - CLAY
+          - COBBLESTONE
+          - STONE_BRICKS
+          - BRICKS
+          - OAK_PLANKS
+          - BIRCH_PLANKS
+          - SPRUCE_PLANKS
+          - JUNGLE_PLANKS
+          - ACACIA_PLANKS
+          - DARK_OAK_PLANKS
+          - QUARTZ_BLOCK
+          - TERRACOTTA
+        xp-required: 100
+      3:
+        allowed-tools:
+          - WOODEN_SHOVEL
+          - STONE_SHOVEL
+          - IRON_SHOVEL
+          - GOLDEN_SHOVEL
+          - DIAMOND_SHOVEL
+        allowed-blocks:
+          - DIRT
+          - GRASS_BLOCK
+          - SAND
+          - GRAVEL
+          - CLAY
+          - COBBLESTONE
+          - STONE_BRICKS
+          - BRICKS
+          - OAK_PLANKS
+          - BIRCH_PLANKS
+          - SPRUCE_PLANKS
+          - JUNGLE_PLANKS
+          - ACACIA_PLANKS
+          - DARK_OAK_PLANKS
+          - QUARTZ_BLOCK
+          - TERRACOTTA
+          - CONCRETE
+          - GLASS
+          - PRISMARINE
+        xp-required: 300
+    xp-gains:
+      COBBLESTONE: 1
+      STONE_BRICKS: 2
+      BRICKS: 3
+      OAK_PLANKS: 1
+
+  hunter:
+    max-level: 10
+    levels:
+      1:
+        allowed-tools:
+          - BOW
+          - WOODEN_SWORD
+          - STONE_SWORD
+        allowed-blocks: [ ]
+        xp-required: 0
+      2:
+        allowed-tools:
+          - BOW
+          - WOODEN_SWORD
+          - STONE_SWORD
+          - IRON_SWORD
+        allowed-blocks: [ ]
+        xp-required: 100
+      3:
+        allowed-tools:
+          - BOW
+          - CROSSBOW
+          - WOODEN_SWORD
+          - STONE_SWORD
+          - IRON_SWORD
+          - GOLDEN_SWORD
+          - DIAMOND_SWORD
+        allowed-blocks: [ ]
+        xp-required: 300
+      4:
+        allowed-tools:
+          - BOW
+          - CROSSBOW
+          - TRIDENT
+          - WOODEN_SWORD
+          - STONE_SWORD
+          - IRON_SWORD
+          - GOLDEN_SWORD
+          - DIAMOND_SWORD
+          - NETHERITE_SWORD
+        allowed-blocks: [ ]
+        xp-required: 600
+    xp-gains: { }
