@@ -40,12 +40,8 @@ public record ProfessionCommand(UniqueProfessions plugin) implements CommandExec
                     chooseProfession(player, data, args[1]);
                 }
                 break;
-
             case "info":
-            case "stats":
                 showProfessionInfo(player, data);
-                break;
-
             case "list":
                 showAvailableProfessions(player);
                 break;
@@ -53,8 +49,8 @@ public record ProfessionCommand(UniqueProfessions plugin) implements CommandExec
             case "reset":
                 resetProfession(player, data);
                 break;
-
             default:
+                player.sendMessage(ChatColor.RED + "Unknown command!");
                 showHelp(player);
                 break;
         }
