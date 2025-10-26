@@ -2,7 +2,15 @@ settings:
   message-prefix: "&6[Profession]&r "
   debug-mode: false
 
+messages:
+  no-permission: "&cYou do not have permission to use this command."
+  no-profession: "&cYou must select a profession first."
+  profession-assigned: "&aYou have been assigned the profession: &e{profession}&a."
+  profession-removed: "&aYour profession has been removed."
+  invalid-profession: "&cThe specified profession does not exist."
+  current-profession: "&aYour current profession is: &e{profession}&a."
 
+# Define default allowed tools for all professions
 default:
   allowed-tools:
     - "WOODEN_PICKAXE"
@@ -14,20 +22,20 @@ default:
 professions:
   miner:
     display-name: "Miner"
-    description: "Excels at mining ores and stones."
+    description: "Masters of the underground, extracting precious ores and minerals"
     allowed-tools:
       - "NETHERITE_PICKAXE"
       - "DIAMOND_PICKAXE"
       - "IRON_PICKAXE"
       - "STONE_PICKAXE"
-  farmer:
-    display-name: "Farmer"
-    description: "Specializes in agriculture and animal husbandry."
+  lumberjack:
+    display-name: "Lumberjack"
+    description: "Woodcutters who fell trees and harvest timber"
     allowed-tools:
-      - "NETHERITE_HOE"
-      - "DIAMOND_HOE"
-      - "IRON_HOE"
-      - "STONE_HOE"
+      - "NETHERITE_AXE"
+      - "DIAMOND_AXE"
+      - "IRON_AXE"
+      - "STONE_AXE"
 
 
 

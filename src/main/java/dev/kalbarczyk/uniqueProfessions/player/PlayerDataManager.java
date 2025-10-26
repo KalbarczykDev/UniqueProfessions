@@ -1,7 +1,7 @@
 package dev.kalbarczyk.uniqueProfessions.player;
 
 import dev.kalbarczyk.uniqueProfessions.UniqueProfessions;
-import dev.kalbarczyk.uniqueProfessions.profession.ProfessionType;
+import dev.kalbarczyk.uniqueProfessions.profession.ProfessionManager;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -16,11 +16,13 @@ public class PlayerDataManager {
     private final UniqueProfessions plugin;
     private final Map<UUID, PlayerData> playerDataCache;
     private final File dataFolder;
+    private final ProfessionManager professionManager;
 
-    public PlayerDataManager(final UniqueProfessions plugin) {
-        this.plugin = plugin;
+    public PlayerDataManager() {
+        this.plugin = UniqueProfessions.getInstance();
         this.playerDataCache = new HashMap<>();
         this.dataFolder = new File(plugin.getDataFolder(), "playerdata");
+        this.professionManager = plugin.getProfessionManager();
 
         if (!dataFolder.exists() && !dataFolder.mkdirs()) {
             plugin.getLogger().severe("Failed to create player data folder: " + dataFolder.getAbsolutePath());
@@ -53,11 +55,12 @@ public class PlayerDataManager {
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
 
         var professionName = config.getString("profession");
-        var profession = professionName != null ? ProfessionType.fromString(professionName) : null;
-        int level = config.getInt("level", 1);
-        double experience = config.getDouble("experience", 0.0);
+        var profession = professionName != null
+                ? professionManager.get(professionName)
+                : null;
 
-        return new PlayerData(playerId, profession, level, experience);
+
+        return new PlayerData(playerId, profession);
     }
 
     public void savePlayerData(final UUID playerId) {
@@ -67,10 +70,8 @@ public class PlayerDataManager {
         var file = new File(dataFolder, playerId.toString() + ".yml");
         FileConfiguration config = new YamlConfiguration();
 
-        if (data.hasProfession()) {
-            config.set("profession", data.getProfession().name());
-            config.set("level", data.getLevel());
-            config.set("experience", data.getExperience());
+        if (data.getProfession().isPresent()) {
+            config.set("profession", data.getProfession().get().name());
         }
 
         try {
