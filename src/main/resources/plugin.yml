@@ -8,24 +8,14 @@ description: A Minecraft plugin that adds unique professions for players.
 commands:
   profession:
     description: Main profession command
-    usage: /profession [choose|info|list|reset]
-    aliases: [ prof, job ]
-
-  professionadmin:
-    description: Admin commands for managing professions
-    usage: /professionadmin [set|setlevel|addxp|reset|reload|info]
-    aliases: [ profadmin, padmin ]
-    permission: profession.admin
+    usage: /unique-profession [choose|info|list|reset]
+    aliases: [ up, prof, profession ]
 
 permissions:
-  profession.admin:
-    description: Allows access to admin commands
-    default: op
-
-  profession.bypass:
+  unique-profession.bypass:
     description: Bypass all profession restrictions
     default: op
 
-  profession.use:
+  unique-profession.use:
     description: Allows using the profession system
     default: true

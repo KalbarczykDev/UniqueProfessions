@@ -1,8 +1,10 @@
 package dev.kalbarczyk.uniqueProfessions.commands;
 
 import dev.kalbarczyk.uniqueProfessions.UniqueProfessions;
+import dev.kalbarczyk.uniqueProfessions.messages.MessageKey;
+import dev.kalbarczyk.uniqueProfessions.messages.MessageManager;
 import dev.kalbarczyk.uniqueProfessions.player.PlayerData;
-import dev.kalbarczyk.uniqueProfessions.profession.ProfessionType;
+import dev.kalbarczyk.uniqueProfessions.utils.ChatColors;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,7 +13,16 @@ import org.bukkit.entity.Player;
 
 import javax.annotation.Nonnull;
 
-public record ProfessionCommand(UniqueProfessions plugin) implements CommandExecutor {
+public class ProfessionCommand implements CommandExecutor {
+
+    private final UniqueProfessions plugin;
+    private final MessageManager mm;
+
+
+    public ProfessionCommand(final UniqueProfessions plugin) {
+        this.plugin = plugin;
+        this.mm = plugin.getMessageManager();
+    }
 
     @Override
     public boolean onCommand(
@@ -50,7 +61,7 @@ public record ProfessionCommand(UniqueProfessions plugin) implements CommandExec
                 resetProfession(player, data);
                 break;
             default:
-                player.sendMessage(ChatColor.RED + "Unknown command!");
+                player.sendMessage(mm.get(MessageKey.UNKNOWN_COMMAND));
                 showHelp(player);
                 break;
         }
@@ -59,110 +70,88 @@ public record ProfessionCommand(UniqueProfessions plugin) implements CommandExec
     }
 
     private void showHelp(final Player player) {
-        player.sendMessage(ChatColor.GOLD + "━━━━━ " + ChatColor.YELLOW + "Profession Commands" + ChatColor.GOLD + " ━━━━━");
-        player.sendMessage(ChatColor.YELLOW + "/profession choose <name>" + ChatColor.GRAY + " - Choose a profession");
-        player.sendMessage(ChatColor.YELLOW + "/profession info" + ChatColor.GRAY + " - View your profession stats");
-        player.sendMessage(ChatColor.YELLOW + "/profession list" + ChatColor.GRAY + " - List all professions");
-        player.sendMessage(ChatColor.YELLOW + "/profession reset" + ChatColor.GRAY + " - Reset your profession");
-        player.sendMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        player.sendMessage(ChatColors.BORDER_COLOR + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        player.sendMessage(ChatColors.COMMAND_COLOR + "/profession choose <name> " + ChatColors.DESCRIPTION_COLOR
+                + "- " + mm.get(MessageKey.HELP_CHOOSE));
+        player.sendMessage(ChatColors.COMMAND_COLOR + "/profession info " + ChatColors.DESCRIPTION_COLOR
+                + "- " + mm.get(MessageKey.HELP_INFO));
+        player.sendMessage(ChatColors.COMMAND_COLOR + "/profession list " + ChatColors.DESCRIPTION_COLOR
+                + "- " + mm.get(MessageKey.HELP_LIST));
+        player.sendMessage(ChatColors.COMMAND_COLOR + "/profession reset " + ChatColors.DESCRIPTION_COLOR
+                + "- " + mm.get(MessageKey.HELP_RESET));
+        player.sendMessage(ChatColors.BORDER_COLOR + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     }
 
     private void showAvailableProfessions(final Player player) {
-        player.sendMessage(ChatColor.GOLD + "━━━━━ " + ChatColor.YELLOW + "Available Professions" + ChatColor.GOLD + " ━━━━━");
+        player.sendMessage(ChatColors.BORDER_COLOR + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        player.sendMessage(ChatColors.COMMAND_COLOR + mm.get(MessageKey.PROFESSION_INFO_HEADER));
+        player.sendMessage(ChatColors.BORDER_COLOR + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
-        for (var type : ProfessionType.values()) {
-            player.sendMessage(type.getColoredName() + ChatColor.GRAY + " - " + type.getDescription());
+        for (var profession : plugin.getProfessionManager().getAll()) {
+            var line = ChatColors.COMMAND_COLOR + profession.displayName() + " "
+                    + ChatColors.DESCRIPTION_COLOR + "- " + profession.description();
+            player.sendMessage(line);
         }
 
-        player.sendMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        player.sendMessage(ChatColor.YELLOW + "Use " + ChatColor.WHITE + "/profession choose <name>" + ChatColor.YELLOW + " to select");
+        player.sendMessage(ChatColors.BORDER_COLOR + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        player.sendMessage(ChatColors.COMMAND_COLOR + mm.get(MessageKey.HELP_CHOOSE) + ": "
+                + ChatColors.DESCRIPTION_COLOR + "/profession choose <name>");
     }
 
     private void chooseProfession(final Player player, final PlayerData data, final String professionName) {
-        if (data.hasProfession()) {
-            player.sendMessage(ChatColor.RED + "You already have a profession! Use /profession reset first.");
+        if (data.getProfession().isPresent()) {
+            player.sendMessage(mm.get(MessageKey.PROFESSION_ALREADY_SELECTED));
             return;
         }
 
-        var type = ProfessionType.fromString(professionName);
+        var type = plugin.getProfessionManager().get(professionName);
+
 
         if (type == null) {
-            player.sendMessage(ChatColor.RED + "Invalid profession! Use /profession list to see available professions.");
+            player.sendMessage(ChatColor.RED + mm.format(MessageKey.INVALID_PROFESSION, "profession", professionName));
             return;
         }
 
         data.setProfession(type);
         plugin.getPlayerDataManager().savePlayerData(player);
 
-        player.sendMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        player.sendMessage(ChatColor.GREEN + "✓ Profession Selected!");
-        player.sendMessage(ChatColor.YELLOW + "You are now a " + type.getColoredName());
-        player.sendMessage(ChatColor.GRAY + type.getDescription());
-        player.sendMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        data.setProfession(type);
+        plugin.getPlayerDataManager().savePlayerData(player);
+
+        player.sendMessage(ChatColors.BORDER_COLOR + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        player.sendMessage(ChatColors.COMMAND_COLOR + mm.format(MessageKey.PROFESSION_SELECTED, "profession", type.displayName()));
+        player.sendMessage(ChatColors.DESCRIPTION_COLOR + type.description());
+        player.sendMessage(ChatColors.BORDER_COLOR + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     }
 
     private void showProfessionInfo(final Player player, final PlayerData data) {
-        if (!data.hasProfession()) {
-            player.sendMessage(ChatColor.RED + "You don't have a profession yet! Use /profession choose");
+        if (data.getProfession().isEmpty()) {
+            player.sendMessage(mm.get(MessageKey.NO_PROFESSION));
             return;
         }
 
-        var profession = plugin.getProfessionManager().getProfession(data.getProfession());
+        var profession = plugin.getProfessionManager().get(data.getProfession().get().name());
         if (profession == null) return;
 
-        double requiredXp = profession.getXpRequiredForLevel(data.getLevel() + 1);
-        int maxLevel = profession.getMaxLevel();
-
-        player.sendMessage(ChatColor.GOLD + "━━━━━ " + ChatColor.YELLOW + "Profession Info" + ChatColor.GOLD + " ━━━━━");
-        player.sendMessage(ChatColor.YELLOW + "Profession: " + data.getProfession().getColoredName());
-        player.sendMessage(ChatColor.YELLOW + "Level: " + ChatColor.WHITE + data.getLevel() + "/" + maxLevel);
-
-        if (data.getLevel() < maxLevel) {
-            player.sendMessage(ChatColor.YELLOW + "Experience: " + ChatColor.WHITE +
-                    String.format("%.1f", data.getExperience()) + "/" +
-                    String.format("%.1f", requiredXp) + " XP");
-
-            int progress = (int) ((data.getExperience() / requiredXp) * 100);
-            player.sendMessage(ChatColor.YELLOW + "Progress: " + createProgressBar(progress));
-        } else {
-            player.sendMessage(ChatColor.GREEN + "✓ MAX LEVEL REACHED!");
-        }
-
-        player.sendMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        player.sendMessage(ChatColors.BORDER_COLOR + "━━━━━ " + ChatColors.COMMAND_COLOR + mm.get(MessageKey.PROFESSION_INFO_HEADER) + ChatColors.BORDER_COLOR + " ━━━━━");
+        player.sendMessage(ChatColors.COMMAND_COLOR + profession.displayName());
+        player.sendMessage(ChatColors.DESCRIPTION_COLOR + profession.description());
+        player.sendMessage(ChatColors.BORDER_COLOR + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     }
 
-    private String createProgressBar(final int percentage) {
-        int bars = 20;
-        int filled = (int) ((percentage / 100.0) * bars);
-
-        var bar = new StringBuilder(ChatColor.GREEN + "[");
-        for (int i = 0; i < bars; i++) {
-            if (i < filled) {
-                bar.append("█");
-            } else {
-                bar.append(ChatColor.GRAY).append("█");
-            }
-        }
-        bar.append(ChatColor.GREEN).append("] ").append(ChatColor.WHITE).append(percentage).append("%");
-
-        return bar.toString();
-    }
 
     private void resetProfession(final Player player, final PlayerData data) {
-        if (!data.hasProfession()) {
-            player.sendMessage(ChatColor.RED + "You don't have a profession to reset!");
+        if (data.getProfession().isEmpty()) {
+            player.sendMessage(mm.get(MessageKey.NO_PROFESSION));
             return;
         }
-
-        //TODO: add cost of resetting profession
 
         var oldProfession = data.getProfession();
         data.resetProfession();
         plugin.getPlayerDataManager().savePlayerData(player);
 
-        player.sendMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        player.sendMessage(ChatColor.YELLOW + "Your " + oldProfession.getColoredName() + ChatColor.YELLOW + " profession has been reset.");
-        player.sendMessage(ChatColor.GRAY + "Use /profession choose to select a new profession.");
-        player.sendMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        player.sendMessage(ChatColors.BORDER_COLOR + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        player.sendMessage(ChatColors.COMMAND_COLOR + mm.format(MessageKey.PROFESSION_RESET, "profession", oldProfession.get().displayName()));
+        player.sendMessage(ChatColors.BORDER_COLOR + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     }
 }

@@ -1,6 +1,5 @@
 package dev.kalbarczyk.uniqueProfessions;
 
-import dev.kalbarczyk.uniqueProfessions.commands.AdminCommand;
 import dev.kalbarczyk.uniqueProfessions.commands.ProfessionCommand;
 import dev.kalbarczyk.uniqueProfessions.config.ConfigManager;
 import dev.kalbarczyk.uniqueProfessions.listeners.BlockListener;
@@ -35,7 +34,6 @@ public final class UniqueProfessions extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
 
         Objects.requireNonNull(getCommand("profession")).setExecutor(new ProfessionCommand(this));
-        Objects.requireNonNull(getCommand("professionadmin")).setExecutor(new AdminCommand(this));
 
         getLogger().info("ProfessionPlugin has been enabled!");
 

@@ -28,11 +28,11 @@ public class MessageManager {
         }
     }
 
-    public String get(String key) {
-        return messages.getOrDefault(key, key); // fallback to key if missing
+    public String get(MessageKey key) {
+        return messages.getOrDefault(key.path(), key.path());
     }
 
-    public String format(final String key, final Object... placeholders) {
+    public String format(final MessageKey key, final Object... placeholders) {
         var msg = get(key);
         for (int i = 0; i < placeholders.length; i += 2) {
             msg = msg.replace("{" + placeholders[i] + "}", String.valueOf(placeholders[i + 1]));

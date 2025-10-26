@@ -1,14 +1,36 @@
+#Configuration file for Unique Profession Minecraft Plugin
+# Customize professions, messages, and settings below.
+# Note: Use valid Minecraft material names for tools.
+# Example: "DIAMOND_PICKAXE", "IRON_SHOVEL", etc.
+# Don't use color codes for messages and names they will not work.
+
 settings:
   message-prefix: "&6[Profession]&r "
   debug-mode: false
 
 messages:
-  no-permission: "&cYou do not have permission to use this command."
-  no-profession: "&cYou must select a profession first."
-  profession-assigned: "&aYou have been assigned the profession: &e{profession}&a."
-  profession-removed: "&aYour profession has been removed."
-  invalid-profession: "&cThe specified profession does not exist."
-  current-profession: "&aYour current profession is: &e{profession}&a."
+
+  no-permission: "You do not have permission to use this command."
+  unknown-command: "Unknown command. Use {command} help for a list of commands."
+  help-message:
+    choose: "Choose your profession."
+    info: "Get information about your current profession."
+    list: "List all available professions."
+    reset: "Reset your current profession."
+  profession-info:
+    header: "Profession Info"
+    no-profession: "You do not have a profession selected."
+    current: "Current Profession"
+    description-header: "Description"
+    allowed-tools-header: "Allowed Tools"
+
+  profession-already-selected: "You have already selected a profession: {profession}."
+  invalid-profession: "The profession '{profession}' does not exist."
+  profession-selected: "You are now a {profession}!"
+  profession-reset: "Your {profession} profession has been reset."
+  no-profession: "You need to choose profession!"
+
+
 
 # Define default allowed tools for all professions
 default:
