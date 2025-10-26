@@ -60,13 +60,17 @@ public class ItemListener implements Listener {
         }
     }
 
+
+
+
+
     private boolean isRestrictedTool(Material material) {
         var name = material.name();
         return name.endsWith("_PICKAXE") ||
                 name.endsWith("_AXE") ||
                 name.endsWith("_SHOVEL") ||
-                name.endsWith("_HOE") ||
-                name.endsWith("_SWORD");
+                name.endsWith("_HOE");
+
     }
 
 

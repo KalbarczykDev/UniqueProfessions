@@ -30,7 +30,6 @@ defaultAllowedTools:
     - "WOODEN_SHOVEL"
     - "WOODEN_AXE"
     - "WOODEN_HOE"
-    - "WOODEN_SWORD"
 
 professions:
   miner:
@@ -60,12 +59,3 @@ professions:
       - "IRON_HOE"
       - "STONE_HOE"
       - "WOODEN_HOE"
-  warrior:
-    display-name: "Warrior"
-    description: "Brave fighters who protect and defend against threats"
-    allowedTools:
-      - "NETHERITE_SWORD"
-      - "DIAMOND_SWORD"
-      - "IRON_SWORD"
-      - "STONE_SWORD"
-      - "WOODEN_SWORD"
