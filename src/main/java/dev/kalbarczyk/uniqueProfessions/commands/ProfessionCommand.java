@@ -44,6 +44,9 @@ public class ProfessionCommand implements CommandExecutor {
         }
 
         switch (args[0].toLowerCase()) {
+            case "help":
+                showHelp(player);
+                break;
             case "choose":
                 if (args.length < 2) {
                     showAvailableProfessions(player);
@@ -57,12 +60,11 @@ public class ProfessionCommand implements CommandExecutor {
             case "list":
                 showAvailableProfessions(player);
                 break;
-
             case "reset":
                 resetProfession(player, data);
                 break;
             default:
-                player.sendMessage(mm.get(MessageKey.UNKNOWN_COMMAND));
+                player.sendMessage(mm.format(MessageKey.UNKNOWN_COMMAND, "command", "/up help"));
                 showHelp(player);
                 break;
         }
