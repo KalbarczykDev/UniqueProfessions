@@ -28,7 +28,7 @@ public class PlayerListener implements Listener {
         if (plugin.getPlayerDataManager().getPlayerData(event.getPlayer()).getProfession().isEmpty()) {
             event.getPlayer().sendMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
             event.getPlayer().sendMessage(ChatColor.YELLOW + messageManager.get(MessageKey.WELCOME_MESSAGE));
-            event.getPlayer().sendMessage(ChatColor.GREEN + "/unique-profession choose");
+            event.getPlayer().sendMessage(ChatColor.GREEN + "/up choose");
             event.getPlayer().sendMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         }
     }

@@ -20,12 +20,9 @@ public class PlayerData {
         this.profession = profession;
     }
 
-    public UUID getPlayerId() {
-        return playerId;
-    }
 
     public Optional<Profession> getProfession() {
-        return Optional.of(profession);
+        return Optional.ofNullable(profession);
     }
 
     public void setProfession(final Profession profession) {

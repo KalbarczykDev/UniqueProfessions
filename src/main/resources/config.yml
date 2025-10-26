@@ -24,7 +24,7 @@ messages:
     description-header: "Description"
     allowed-tools-header: "Allowed Tools"
 
-  welcome-message: "Welcome, {player}! Choose your profession using /profession choose."
+  welcome-message: "Welcome, {player}! Choose your profession using"
 
   profession-already-selected: "You have already selected a profession: {profession}."
   invalid-profession: "The profession '{profession}' does not exist."
