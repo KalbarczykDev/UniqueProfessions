@@ -111,8 +111,11 @@ public record ProfessionCommand(UniqueProfessions plugin) implements CommandExec
             return;
         }
 
-        double requiredXp = plugin.getProfessionManager().getRequiredXpForNextLevel(data);
-        int maxLevel = plugin.getProfessionManager().getMaxLevel(data.getProfession());
+        var profession = plugin.getProfessionManager().getProfession(data.getProfession());
+        if (profession == null) return;
+
+        double requiredXp = profession.getXpRequiredForLevel(data.getLevel() + 1);
+        int maxLevel = profession.getMaxLevel();
 
         player.sendMessage(ChatColor.GOLD + "━━━━━ " + ChatColor.YELLOW + "Profession Info" + ChatColor.GOLD + " ━━━━━");
         player.sendMessage(ChatColor.YELLOW + "Profession: " + data.getProfession().getColoredName());
@@ -123,8 +126,7 @@ public record ProfessionCommand(UniqueProfessions plugin) implements CommandExec
                     String.format("%.1f", data.getExperience()) + "/" +
                     String.format("%.1f", requiredXp) + " XP");
 
-            // Progress bar
-            int progress = data.getProgressPercentage(requiredXp);
+            int progress = (int) ((data.getExperience() / requiredXp) * 100);
             player.sendMessage(ChatColor.YELLOW + "Progress: " + createProgressBar(progress));
         } else {
             player.sendMessage(ChatColor.GREEN + "✓ MAX LEVEL REACHED!");
