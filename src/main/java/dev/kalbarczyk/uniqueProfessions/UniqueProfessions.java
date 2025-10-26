@@ -9,7 +9,6 @@ import dev.kalbarczyk.uniqueProfessions.listeners.PlayerListener;
 import dev.kalbarczyk.uniqueProfessions.player.PlayerDataManager;
 import dev.kalbarczyk.uniqueProfessions.profession.ProfessionManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.checkerframework.checker.units.qual.C;
 
 import java.util.Objects;
 
@@ -23,9 +22,10 @@ public final class UniqueProfessions extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        playerDataManager = new PlayerDataManager(this);
-        professionManager = new ProfessionManager(this);
-        configManager = new ConfigManager(this);
+        professionManager = new ProfessionManager();
+        configManager = new ConfigManager();
+        playerDataManager = new PlayerDataManager();
+
 
         getServer().getPluginManager().registerEvents(new BlockListener(this), this);
         getServer().getPluginManager().registerEvents(new ItemListener(this), this);

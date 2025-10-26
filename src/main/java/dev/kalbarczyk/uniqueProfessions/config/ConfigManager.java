@@ -14,11 +14,10 @@ import java.util.logging.Level;
 public class ConfigManager {
 
     private final UniqueProfessions plugin;
-    private FileConfiguration config;
     private final File configFile;
 
-    public ConfigManager(final UniqueProfessions plugin) {
-        this.plugin = plugin;
+    public ConfigManager() {
+        this.plugin = UniqueProfessions.getInstance();
         this.configFile = new File(plugin.getDataFolder(), "config.yml");
 
         // Create plugin folder if it doesn't exist
@@ -34,105 +33,21 @@ public class ConfigManager {
         }
 
         loadConfig();
+
     }
 
     public void loadConfig() {
-        this.config = YamlConfiguration.loadConfiguration(configFile);
-
-        // Load defaults
+        FileConfiguration config = YamlConfiguration.loadConfiguration(configFile);
         var defConfigStream = plugin.getResource("config.yml");
         if (defConfigStream != null) {
             var defConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(defConfigStream));
             config.setDefaults(defConfig);
+            var professionManager = plugin.getProfessionManager();
+            professionManager.clear();
+            professionManager.registerAll(ConfigLoader.loadProfessions(config));
         }
+        plugin.getLogger().info("Loaded config file: " + configFile.getAbsolutePath());
     }
 
-    public void saveConfig() {
-        try {
-            config.save(configFile);
-        } catch (IOException e) {
-            plugin.getLogger().log(Level.SEVERE, "Could not save config to " + configFile, e);
-        }
-    }
 
-    public void reloadConfig() {
-        loadConfig();
-    }
-
-    public FileConfiguration getConfig() {
-        if (config == null) {
-            loadConfig();
-        }
-        return config;
-    }
-
-    // Utility methods for common config operations
-
-    public String getString(String path, String def) {
-        return config.getString(path, def);
-    }
-
-    public int getInt(String path, int def) {
-        return config.getInt(path, def);
-    }
-
-    public double getDouble(String path, double def) {
-        return config.getDouble(path, def);
-    }
-
-    public boolean getBoolean(String path, boolean def) {
-        return config.getBoolean(path, def);
-    }
-
-    public boolean contains(String path) {
-        return config.contains(path);
-    }
-
-    public void set(String path, Object value) {
-        config.set(path, value);
-    }
-
-    // Profession-specific config helpers
-
-    public boolean isProfessionEnabled(String profession) {
-        return config.getBoolean("professions." + profession + ".enabled", true);
-    }
-
-    public int getMaxLevel(String profession) {
-        return config.getInt("professions." + profession + ".max-level", 10);
-    }
-
-    public double getXpRequirement(String profession, int level) {
-        return config.getDouble("professions." + profession + ".levels." + level + ".xp-required", 0.0);
-    }
-
-    public double getXpGain(String profession, String material) {
-        return config.getDouble("professions." + profession + ".xp-gains." + material, 0.0);
-    }
-
-    // Settings
-
-    public boolean allowProfessionReset() {
-        return config.getBoolean("settings.allow-profession-reset", true);
-    }
-
-    public double getProfessionResetCost() {
-        return config.getDouble("settings.profession-reset-cost", 0.0);
-    }
-
-    public boolean showXpMessages() {
-        return config.getBoolean("settings.show-xp-messages", true);
-    }
-
-    public boolean showLevelUpEffects() {
-        return config.getBoolean("settings.show-levelup-effects", true);
-    }
-
-    public String getMessagePrefix() {
-        return config.getString("settings.message-prefix", "&6[Profession]&r ");
-    }
-
-    public boolean debugMode() {
-        return config.getBoolean("settings.debug-mode", false);
-    }
 }
